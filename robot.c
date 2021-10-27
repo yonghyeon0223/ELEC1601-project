@@ -334,5 +334,6 @@ int robotAutoMotorMove(struct Robot * robot, int front_left_sensor, int front_ri
         robot->direction = UP;
     }
     return turn_degree;
+    //hehe
 }
 
