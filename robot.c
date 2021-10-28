@@ -276,21 +276,21 @@ int time_for_turn(int turn_degree, int front_left_sensor, int front_right_sensor
         case 0:
             return 0;
             break;
-        case 75:
+        case 90:
             if (front_left_sensor == 0 && front_right_sensor == 0)
                 return 0;
             else {
                 return 1;
             }
         break;
-        case 165:
+        case 270:
             if (front_left_sensor == 0 && front_right_sensor == 0)
                 return 0;
             else {
                 return 1;
             }
-        break;
-        case 255:
+            break;
+        case 360:
             if (front_left_sensor == 0 && front_right_sensor == 0)
                 return 0;
             else {
@@ -313,17 +313,17 @@ int robotAutoMotorMove(struct Robot * robot, int front_left_sensor, int front_ri
             robot->direction = DOWN;
             turned = false;
         }
-        else if (turning == 1 && robot->currentSpeed < 0)
+        else if (turning == 1 && robot->currentSpeed < 0) {
             robot->direction = UP;
-        else if (turn_degree < 75)
+            turned = false;
+        }
+        else if (turn_degree < 90)
             robot->direction = RIGHT;
-        else if (turn_degree < 255)
+        else if (turn_degree < 360)
             robot->direction = LEFT;
-        else if (turn_degree < 345)
-            robot->direction = RIGHT;
         if (turned == true && turning == 0)
             turn_degree = turn_degree + DEFAULT_ANGLE_CHANGE;
-        if(turn_degree == 345)
+        if(turn_degree == 360)
             turn_degree = 0;
         if (robot->currentSpeed < 0 && turned == true)
             turn_degree = turn_degree + 1;
@@ -334,6 +334,4 @@ int robotAutoMotorMove(struct Robot * robot, int front_left_sensor, int front_ri
         robot->direction = UP;
     }
     return turn_degree;
-    //hehe
 }
-
