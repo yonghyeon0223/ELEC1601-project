@@ -8,9 +8,9 @@
 #include "wall.h"
 #include "robot.h"
 
+
 int done = 0;
-int turn_degree = 0;
-int turning = 0;
+int robot_status = 0;
 
 int main(int argc, char *argv[]) {
     SDL_Window *window;
@@ -26,7 +26,7 @@ int main(int argc, char *argv[]) {
 
     struct Robot robot;
     struct Wall_collection *head = NULL;
-    int front_left_sensor, front_right_sensor=0;
+    int left_sensor, right_sensor, front_sensor=0;
     clock_t start_time, end_time;
     int msec;
 
@@ -60,10 +60,7 @@ int main(int argc, char *argv[]) {
         //Move robot based on user input commands/auto commands
 
         if (robot.auto_mode == 1) {
-            int turn_or_not = time_for_turn(turn_degree, front_left_sensor, front_right_sensor);
-            int result = robotAutoMotorMove(&robot, front_left_sensor, front_right_sensor, turn_degree, turn_or_not, turning);
-            turning = result % 5;
-            turn_degree = result - turning;
+            int robot_status = robotAutoMotorMove(&robot, front_sensor, left_sensor, right_sensor, robot_status);
         }
         robotMotorMove(&robot);
 
@@ -77,13 +74,17 @@ int main(int argc, char *argv[]) {
             robotCrash(&robot);
         //Otherwise compute sensor information
         else {
-            front_left_sensor = checkRobotSensorFrontLeftAllWalls(&robot, head);
-            if (front_left_sensor>0)
-                printf("Getting close on the left. Score = %d\n", front_left_sensor);
+            left_sensor = checkRobotSensorFrontLeftAllWalls(&robot, head);
+            if (left_sensor == 0)
+                printf("Left Side empty\n");
 
-            front_right_sensor = checkRobotSensorFrontRightAllWalls(&robot, head);
-            if (front_right_sensor>0)
-                printf("Getting close on the right. Score = %d\n", front_right_sensor);
+            right_sensor = checkRobotSensorFrontRightAllWalls(&robot, head);
+            if (right_sensor == 0)
+                printf("Right Side empty\n");
+
+            front_sensor = checkRobotSensorFrontAllWalls(&robot, head);
+            if (front_sensor>0)
+                printf("Getting close on the front. Score = %d\n", front_sensor);
         }
         robotUpdate(renderer, &robot);
         updateAllWalls(head, renderer);
