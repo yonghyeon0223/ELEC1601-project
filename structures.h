@@ -17,7 +17,7 @@
 #define DEFAULT_SPEED_CHANGE 1
 #define MAX_ROBOT_SPEED 25
 #define PI 3.14159265
-#define SENSOR_VISION 65
+#define SENSOR_VISION 30
 
 // Inside structure Wall, we define (x,y), the coordinate of the wall's left corner.
 // We also define width and the height of the wall.

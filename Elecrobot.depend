@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1634791266 source:c:\users\yongh\documents\elec1601\elecrobot\formulas.c
+1636044570 source:c:\users\yongh\documents\elec1601\elecrobot\formulas.c
 	"formulas.h"
 
 1634199360 c:\users\yongh\documents\elec1601\elecrobot\formulas.h
 	"math.h"
 
-1636044052 source:c:\users\yongh\documents\elec1601\elecrobot\main.c
+1636455388 source:c:\users\yongh\documents\elec1601\elecrobot\main.c
 	"stdio.h"
 	"stdlib.h"
 	"sdl.h"
@@ -14,6 +14,7 @@
 	"formulas.h"
 	"wall.h"
 	"robot.h"
+	"math.h"
 
 1628610877 c:\users\yongh\documents\elec1601\sdl2-devel-2.0.16-mingw\sdl2-2.0.16\x86_64-w64-mingw32\include\sdl2\sdl.h
 	"SDL_main.h"
@@ -398,9 +399,9 @@
 	"SDL2_gfxPrimitives.h"
 	"structures.h"
 
-1636044125 c:\users\yongh\documents\elec1601\elecrobot\structures.h
+1636452745 c:\users\yongh\documents\elec1601\elecrobot\structures.h
 
-1636044032 c:\users\yongh\documents\elec1601\elecrobot\robot.h
+1636408828 c:\users\yongh\documents\elec1601\elecrobot\robot.h
 	"stdio.h"
 	"stdlib.h"
 	"sdl.h"
@@ -410,10 +411,10 @@
 	"wall.h"
 	"math.h"
 
-1636044103 source:c:\users\yongh\documents\elec1601\elecrobot\robot.c
+1636455236 source:c:\users\yongh\documents\elec1601\elecrobot\robot.c
 	"robot.h"
 	<stdbool.h>
 
-1634199360 source:c:\users\yongh\documents\elec1601\elecrobot\wall.c
+1636044600 source:c:\users\yongh\documents\elec1601\elecrobot\wall.c
 	"wall.h"
 

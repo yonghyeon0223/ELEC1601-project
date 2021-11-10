@@ -24,14 +24,16 @@ void robotSuccess(struct Robot * robot, int msec);
 
 //Sensor Checking
 int checkRobotSensor(int x, int y, int sensorSensitivityLength, struct Wall * wall) ;
-int checkRobotSensorFrontRightAllWalls(struct Robot * robot, struct Wall_collection * head);
-int checkRobotSensorFrontLeftAllWalls(struct Robot * robot, struct Wall_collection * head);
-int checkRobotSensorFrontAllWalls(struct Robot * robot, struct Wall_collection * head);
+int checkSensorFrontRight(struct Robot * robot, struct Wall_collection * head);
+int checkSensorFrontLeft(struct Robot * robot, struct Wall_collection * head);
+int checkSensorLeftFront(struct Robot * robot, struct Wall_collection * head);
+int checkSensorLeftBehind(struct Robot * robot, struct Wall_collection * head);
+int checkSensorFrontLongRange(struct Robot * robot, struct Wall_collection * head);
 
 //Visual Display
 void robotUpdate(struct SDL_Renderer * renderer, struct Robot * robot);
 
 //Movement
 void robotMotorMove(struct Robot * robot);
-int robotAutoMotorMove(struct Robot * robot, int front_sensor, int left_sensor, int right_sensor, int robot_status);
+int robotAutoMotorMove(struct Robot * robot, int front_L, int front_R, int left_F, int left_B, int front_range, int robot_status);
 #endif // ROBOT_H_INCLUDED
