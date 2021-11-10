@@ -35,5 +35,6 @@ void robotUpdate(struct SDL_Renderer * renderer, struct Robot * robot);
 
 //Movement
 void robotMotorMove(struct Robot * robot);
-int robotAutoMotorMove(struct Robot * robot, int front_L, int front_R, int left_F, int left_B, int front_range, int robot_status);
+int returnCurrentSpeed(struct Robot * robot);
+int robotAutoMotorMove(struct Robot * robot, int front_L, int front_R, int left_F, int left_B, int front_range, int robot_status, int max_speed_maintain);
 #endif // ROBOT_H_INCLUDED

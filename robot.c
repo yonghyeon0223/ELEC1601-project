@@ -416,14 +416,18 @@ void robotMotorMove(struct Robot * robot) {
     robot->x = (int) x_offset;
     robot->y = (int) y_offset;
 }
+int returnCurrentSpeed(struct Robot * robot){
+    return robot->currentSpeed;
+}
 
-
-int robotAutoMotorMove(struct Robot * robot, int front_L, int front_R, int left_F, int left_B, int front_range, int robot_status) {
+int robotAutoMotorMove(struct Robot * robot, int front_L, int front_R, int left_F, int left_B, int front_range, int robot_status, int max_speed_maintain) {
     printf("Speed: %d\n", robot->currentSpeed);
     // Depending on the value from front_range sensor,
     // we decide the robot's max speed. (lower max speed when obstacles are near)
     int max = 5;
-    if (front_range < 3)
+    if (max_speed_maintain > 16 && front_range == 0)
+        max = 8;
+    else if (front_range < 3)
         max = 7;
     else if (front_range < 4)
         max = 6;
@@ -527,4 +531,3 @@ int robotAutoMotorMove(struct Robot * robot, int front_L, int front_R, int left_
     }
     return 0;
 }
-

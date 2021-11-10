@@ -9,7 +9,7 @@
 #include "robot.h"
 #include "math.h"
 
-int accel = 0;
+int max_speed_maintain = 0;
 int done = 0;
 int robot_status = 0;
 
@@ -111,8 +111,13 @@ int main(int argc, char *argv[]) {
         //Move robot based on user input commands/auto commands
 
         if (robot.auto_mode == 1) {
-
-            int robot_status = robotAutoMotorMove(&robot, front_left, front_right, left_forward, left_behind, front_range, robot_status);
+            int speed = returnCurrentSpeed(&robot);
+            if (speed >= 7)
+                max_speed_maintain += 1;
+            else{
+                max_speed_maintain = 0;
+            }
+            int robot_status = robotAutoMotorMove(&robot, front_left, front_right, left_forward, left_behind, front_range, robot_status, max_speed_maintain);
             printf("\n");
         }
         robotMotorMove(&robot);
