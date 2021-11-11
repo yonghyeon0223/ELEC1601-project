@@ -3,9 +3,9 @@
 
 
 void setup_robot(struct Robot *robot){
-    robot->x = 640-10-170;
+    robot->x = 270;
     robot->y = 460;
-    robot->true_x = 640-10-170;
+    robot->true_x = 270;
     robot->true_y = 460;
     robot->width = ROBOT_WIDTH;
     robot->height = ROBOT_HEIGHT;
@@ -17,7 +17,6 @@ void setup_robot(struct Robot *robot){
 
     printf("Press arrow keys to move manually, or enter to move automatically\n\n");
 }
-
 int robot_off_screen(struct Robot * robot){
     if(robot->x < 0 || robot-> y < 0){
         return 0;
@@ -425,11 +424,11 @@ int robotAutoMotorMove(struct Robot * robot, int front_L, int front_R, int left_
     // Depending on the value from front_range sensor,
     // we decide the robot's max speed. (lower max speed when obstacles are near)
     int max = 5;
-    if (max_speed_maintain > 16 && front_range == 0)
-        max = 8;
-    else if (front_range < 3)
+    if (max_speed_maintain > 12 && front_range == 0)
+        max = 9;
+    else if (front_range < 2)
         max = 7;
-    else if (front_range < 4)
+    else if (front_range < 3)
         max = 6;
     if (left_F == 0)
         max = 5;
@@ -481,7 +480,7 @@ int robotAutoMotorMove(struct Robot * robot, int front_L, int front_R, int left_
 
     // both side sensors sense.
     if (left_F > 0 && left_B > 0){
-         if (front_L > 0 || front_R > 2) {
+         if (front_L > 0 || front_R > 0) {
             if (robot->currentSpeed > 2){
                 robot->direction = DOWN;
             }
@@ -491,7 +490,7 @@ int robotAutoMotorMove(struct Robot * robot, int front_L, int front_R, int left_
                 // turning corners between two walls that have relatively small gap between them.
                 // In such case, robot needs to turn left and move toward left wall to ensure
                 // it will not bump into the right side of the wall.
-                if (front_L == 0 && front_R > 1){
+                if (front_L == 0 && front_R > 0){
                     robot->direction = LEFT;
                     return 40;
                 }
@@ -501,8 +500,12 @@ int robotAutoMotorMove(struct Robot * robot, int front_L, int front_R, int left_
                 // when number 30 is returned as a robot_status, the robot will keep turning right
                 // until both front sensors do not sense a wall. (front path becomes open again)
                 else {
+                if (front_L > 3 && robot->currentSpeed > 0)
+                    robot->direction = DOWN;
+                else{
                 robot->direction = RIGHT;
                 return 30;
+                }
                 }
             }
         }
@@ -512,9 +515,11 @@ int robotAutoMotorMove(struct Robot * robot, int front_L, int front_R, int left_
             robot->direction = UP;
     }
 
+
     // both left and front side is blocked.
     // robot needs to turn right until the front path becomes open again.
     if (robot_status == 30 && front_L > 0){
+        if (front_range)
         robot->direction = RIGHT;
         return 30;
     }

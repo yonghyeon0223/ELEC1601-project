@@ -5,7 +5,7 @@
 1634199360 c:\users\yongh\documents\elec1601\elecrobot\formulas.h
 	"math.h"
 
-1636577563 source:c:\users\yongh\documents\elec1601\elecrobot\main.c
+1636610887 source:c:\users\yongh\documents\elec1601\elecrobot\main.c
 	"stdio.h"
 	"stdlib.h"
 	"sdl.h"
@@ -411,7 +411,7 @@
 	"wall.h"
 	"math.h"
 
-1636576916 source:c:\users\yongh\documents\elec1601\elecrobot\robot.c
+1636610775 source:c:\users\yongh\documents\elec1601\elecrobot\robot.c
 	"robot.h"
 	<stdbool.h>
 
